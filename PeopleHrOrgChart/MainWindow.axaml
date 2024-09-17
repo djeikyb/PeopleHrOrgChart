@@ -5,7 +5,7 @@
         xmlns:views="clr-namespace:PeopleHrOrgChart.Views"
         xmlns:core="clr-namespace:PeopleHrOrgChart.Vm"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        Width="350" Height="280"
+        Width="700" Height="700"
         Position="50 0"
 
         TransparencyLevelHint="AcrylicBlur"
@@ -36,11 +36,35 @@
     <Panel Margin="{Binding #Main.OffScreenMargin}">
       <DockPanel Margin="{Binding #Main.WindowDecorationMargin}">
 
-        <Panel HorizontalAlignment="Stretch"
-               Background="Black"
-               DockPanel.Dock="Top">
-          <SelectableTextBlock Text="ur in mah action bar" Padding="6" />
-        </Panel>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    DockPanel.Dock="Top">
+
+          <Label Target="IsTopDown" VerticalAlignment="Center">Top down:</Label>
+          <CheckBox Name="IsTopDown" IsChecked="{Binding TopDown.Value}" />
+
+          <Label Target="SearchText" VerticalAlignment="Center">Name:</Label>
+          <TextBox Name="SearchText"
+                    Width="200"
+                   VerticalAlignment="Center"
+                   Text="{Binding SearchText.Value}" />
+
+          <Label Target="Department" VerticalAlignment="Center">Department:</Label>
+          <ComboBox Name="Department"
+                    Width="100"
+                    VerticalAlignment="Center"
+                    SelectedItem="{Binding DepartmentSelected.Value}"
+                    ItemsSource="{Binding DepartmentList}" />
+
+          <Label Target="Location" VerticalAlignment="Center">Location:</Label>
+          <ComboBox Name="Location"
+                    Width="100"
+                    VerticalAlignment="Center"
+                    SelectedItem="{Binding LocationSelected.Value}"
+                    ItemsSource="{Binding LocationList}" />
+
+        </StackPanel>
 
         <Rectangle HorizontalAlignment="Stretch"
                    Height="0.5"
@@ -55,12 +79,13 @@
 
         <StackPanel Orientation="Horizontal"
                     Classes="status-bar"
-                    Background="CornflowerBlue"
+                    Background="{DynamicResource SystemControlHighlightListAccentHighBrush}"
                     Name="StatusBar"
                     DockPanel.Dock="Bottom">
-          <SelectableTextBlock HorizontalAlignment="Left" Padding="6">
-            <Run Text="Am in ur status bar" />
-          </SelectableTextBlock>
+          <TextBlock HorizontalAlignment="Left" Padding="6">
+            <Run Text="Total:" />
+            <Run Text="{Binding People.Count}" />
+          </TextBlock>
         </StackPanel>
 
         <Rectangle HorizontalAlignment="Stretch"
@@ -79,8 +104,8 @@
                    DockPanel.Dock="Bottom" />
 
         <TabControl>
-          <TabItem Header="Org Chart">
-            <views:OrgChart />
+          <TabItem Header="Org Tree">
+            <views:OrgTree />
           </TabItem>
           <TabItem Header="Logs">
             <views:LogView />
