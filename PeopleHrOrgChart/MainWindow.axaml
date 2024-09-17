@@ -1,0 +1,94 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:PeopleHrOrgChart.Views"
+        xmlns:core="clr-namespace:PeopleHrOrgChart.Vm"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="350" Height="280"
+        Position="50 0"
+
+        TransparencyLevelHint="AcrylicBlur"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="PreferSystemChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        SystemDecorations="Full"
+        Background="Transparent"
+
+        FontFamily="SF Pro"
+        FontSize="12"
+
+        x:Class="PeopleHrOrgChart.MainWindow"
+        x:DataType="core:ViewModel"
+        x:Name="Main"
+        Title="Org Chart">
+
+  <Panel>
+    <ExperimentalAcrylicBorder IsHitTestVisible="False">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial BackgroundSource="Digger"
+                                     TintColor="{DynamicResource SystemChromeLowColor}"
+                                     FallbackColor="White"
+                                     TintOpacity="1"
+                                     MaterialOpacity="0.25" />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+    <Panel Margin="{Binding #Main.OffScreenMargin}">
+      <DockPanel Margin="{Binding #Main.WindowDecorationMargin}">
+
+        <Panel HorizontalAlignment="Stretch"
+               Background="Black"
+               DockPanel.Dock="Top">
+          <SelectableTextBlock Text="ur in mah action bar" Padding="6" />
+        </Panel>
+
+        <Rectangle HorizontalAlignment="Stretch"
+                   Height="0.5"
+                   Fill="{DynamicResource TitleBarSeparatorColorTop}"
+                   Margin="0 0 0 0"
+                   DockPanel.Dock="Top" />
+        <Rectangle HorizontalAlignment="Stretch"
+                   Height="0.5"
+                   Fill="{DynamicResource TitleBarSeparatorColorBottom}"
+                   Margin="0 0 0 0"
+                   DockPanel.Dock="Top" />
+
+        <StackPanel Orientation="Horizontal"
+                    Classes="status-bar"
+                    Background="CornflowerBlue"
+                    Name="StatusBar"
+                    DockPanel.Dock="Bottom">
+          <SelectableTextBlock HorizontalAlignment="Left" Padding="6">
+            <Run Text="Am in ur status bar" />
+          </SelectableTextBlock>
+        </StackPanel>
+
+        <Rectangle HorizontalAlignment="Stretch"
+                   Height="0.5"
+                   Margin="0 0 0 0"
+                   Fill="{DynamicResource StatusBarSeparatorColorBottom}"
+                   DockPanel.Dock="Bottom" />
+        <!-- bottom ⬆️  -->
+        <!-- because dock priority, the stack of down docked items -->
+        <!-- the first one is the most down -->
+        <!-- ⬇️ top -->
+        <Rectangle HorizontalAlignment="Stretch"
+                   Height="0.5"
+                   Margin="0 0 0 0"
+                   Fill="{DynamicResource StatusBarSeparatorColorTop}"
+                   DockPanel.Dock="Bottom" />
+
+        <TabControl>
+          <TabItem Header="Org Chart">
+            <views:OrgChart />
+          </TabItem>
+          <TabItem Header="Logs">
+            <views:LogView />
+          </TabItem>
+        </TabControl>
+
+      </DockPanel>
+    </Panel>
+  </Panel>
+
+</Window>
