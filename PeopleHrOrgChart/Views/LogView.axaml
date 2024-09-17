@@ -6,17 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:ViewModel"
              x:Class="PeopleHrOrgChart.Views.LogView">
-  <DockPanel>
-    <Button
-      DockPanel.Dock="Top"
-      Content="🐙"
-      Command="{Binding Click}"
-      Margin="12"
-      HorizontalContentAlignment="Center"
-      VerticalAlignment="Center"
-      HorizontalAlignment="Stretch" />
-    <TreeDataGrid Margin="9 0 9 0"
-                  HorizontalAlignment="Stretch"
-                  Source="{Binding LogEventGridSource}" />
-  </DockPanel>
+  <TreeDataGrid Margin="9 0 9 0"
+                HorizontalAlignment="Stretch"
+                Name="LogGrid" />
 </UserControl>
