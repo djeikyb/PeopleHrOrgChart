@@ -36,51 +36,16 @@ public class ViewModel
         People = view.ToNotifyCollectionChanged(); // can't use AddRange with Slim
 
         TopDown = new(false);
-        TopDown.Subscribe(isTopDown =>
-        {
-            if (isTopDown)
-            {
-                logger.Information("Switched from bottom up to top down.");
-                view.AttachFilter(x => x.DirectReports.Count != 0);
-            }
-            else
-            {
-                logger.Information("Switched from top down to bottom up.");
-            }
-        });
-
         SearchText = new();
-        SearchText.Subscribe(term =>
-        {
-            view.AttachFilter(x =>
-            {
-                if (term is not { Length: > 0 }) return true;
 
-                var parts = x.EmployeeName.Split(' ');
-                foreach (var part in parts)
-                {
-                    if (part.StartsWith(term, StringComparison.InvariantCultureIgnoreCase)) return true;
-                }
-
-                return false;
-            });
-        });
-
-        // TODO every AttachFilter removes the prior
         DepartmentList = new(
             root.Data.EmployeeList
                 .Select(x => x.Department)
                 .Order()
                 .Distinct()
                 .Prepend("Any department")
-            );
+        );
         DepartmentSelected = new("Any department");
-        DepartmentSelected.Subscribe(department =>
-        {
-            if (department.Equals("Any department")) view.ResetFilter();
-            else if (department is { Length: > 0 }) view.AttachFilter(x => department.Equals(x.Department));
-            else view.ResetFilter();
-        });
 
         LocationList = new(
             root.Data.EmployeeList
@@ -89,14 +54,51 @@ public class ViewModel
                 .Distinct()
                 .Prepend("Any location")
         );
-
         LocationSelected = new("Any location");
-        LocationSelected.Subscribe(location =>
+
+        Observable.Merge(
+                TopDown.Select(_ => string.Empty),
+                SearchText.Select(_ => string.Empty),
+                DepartmentSelected,
+                LocationSelected
+            )
+            .Subscribe(_ =>
+            {
+                view.AttachFilter(new Filter(
+                    SearchText.Value,
+                    TopDown.Value,
+                    DepartmentSelected.Value,
+                    LocationSelected.Value
+                ));
+            });
+    }
+
+    class Filter(string? term, bool topDown, string department, string location) : ISynchronizedViewFilter<Person>
+    {
+        public bool IsMatch(Person person)
         {
-            if (location.Equals("Any location")) view.ResetFilter();
-            else if (location is { Length: > 0 }) view.AttachFilter(x => location.Equals(x.Location));
-            else view.ResetFilter();
-        });
+            bool td = !topDown || topDown && person.DirectReports.Count > 0;
+            bool d = department is "Any department" || department.Equals(person.Department);
+            bool l = location is "Any location" || location.Equals(person.Location);
+
+            bool t = false;
+            if (term?.Trim() is { Length: > 0 })
+            {
+                foreach (var part in person.EmployeeName.Split(' '))
+                {
+                    if (part.StartsWith(term, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        t = true;
+                    }
+                }
+            }
+            else
+            {
+                t = true;
+            }
+
+            return td && d && l && t;
+        }
     }
 
     public BindableReactiveProperty<string> DepartmentSelected { get; set; }
@@ -107,5 +109,5 @@ public class ViewModel
 
     public BindableReactiveProperty<bool> TopDown { get; }
     public INotifyCollectionChangedSynchronizedViewList<Person> People { get; }
-    public BindableReactiveProperty<string> SearchText { get; }
+    public BindableReactiveProperty<string?> SearchText { get; }
 }
