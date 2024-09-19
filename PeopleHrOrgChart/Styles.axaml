@@ -1,0 +1,23 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Padding="20">
+      <!-- Add Controls for Previewer Here -->
+    <StackPanel Orientation="Horizontal"
+                Spacing="9"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                DockPanel.Dock="Top">
+      <TextBox Name="SearchText"
+               Width="200"
+               VerticalAlignment="Center"
+               InnerLeftContent="👤"
+               Text="hullo" />
+      </StackPanel>
+    </Border>
+  </Design.PreviewWith>
+
+  <Style Selector="TextBox /template/ ContentPresenter">
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+</Styles>

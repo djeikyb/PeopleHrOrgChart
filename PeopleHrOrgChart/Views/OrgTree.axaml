@@ -6,5 +6,14 @@
              x:Class="PeopleHrOrgChart.Views.OrgTree">
   <TreeDataGrid Margin="0 0 0 0"
                 HorizontalAlignment="Stretch"
-                Name="PersonTable" />
+                Name="PersonTable">
+    <TreeDataGrid.Styles>
+      <Style Selector="TreeDataGrid">
+        <Setter Property="Background" Value="{DynamicResource TableRow_Background-Primary}" />
+      </Style>
+      <Style Selector="TreeDataGridRow:nth-child(even)">
+        <Setter Property="Background" Value="{DynamicResource TableRow_Background-Secondary}" />
+      </Style>
+    </TreeDataGrid.Styles>
+  </TreeDataGrid>
 </UserControl>
