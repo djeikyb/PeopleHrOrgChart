@@ -67,19 +67,34 @@ public class ViewModel
         });
 
         // TODO every AttachFilter removes the prior
-        DepartmentList = new(root.Data.EmployeeList.Select(x => x.Department).Order().Distinct());
-        DepartmentSelected = new();
+        DepartmentList = new(
+            root.Data.EmployeeList
+                .Select(x => x.Department)
+                .Order()
+                .Distinct()
+                .Prepend("Any department")
+            );
+        DepartmentSelected = new("Any department");
         DepartmentSelected.Subscribe(department =>
         {
-            if (department is { Length: > 0 }) view.AttachFilter(x => department.Equals(x.Department));
+            if (department.Equals("Any department")) view.ResetFilter();
+            else if (department is { Length: > 0 }) view.AttachFilter(x => department.Equals(x.Department));
             else view.ResetFilter();
         });
 
-        LocationList = new(root.Data.EmployeeList.Select(x => x.Location).Order().Distinct());
-        LocationSelected = new();
+        LocationList = new(
+            root.Data.EmployeeList
+                .Select(x => x.Location)
+                .Order()
+                .Distinct()
+                .Prepend("Any location")
+        );
+
+        LocationSelected = new("Any location");
         LocationSelected.Subscribe(location =>
         {
-            if (location is { Length: > 0}) view.AttachFilter(x => location.Equals(x.Location));
+            if (location.Equals("Any location")) view.ResetFilter();
+            else if (location is { Length: > 0 }) view.AttachFilter(x => location.Equals(x.Location));
             else view.ResetFilter();
         });
     }
