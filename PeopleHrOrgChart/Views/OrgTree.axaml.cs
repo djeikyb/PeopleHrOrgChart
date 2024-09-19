@@ -24,6 +24,7 @@ public partial class OrgTree : UserControl
         DataContextChanged += (sender, _) =>
         {
             var vm = ((OrgTree)sender).DataContext as ViewModel; // TODO this is gonna bite me
+            if (vm is null) return;
             vm.TopDown.Subscribe(isTopDown =>
             {
                 // TODO extension dispose with
