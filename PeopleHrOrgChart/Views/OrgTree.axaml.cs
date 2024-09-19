@@ -49,7 +49,11 @@ public partial class OrgTree : UserControl
             {
                 new HierarchicalExpanderColumn<Person>(
                     new TextColumn<Person, string>("Name", x => x.EmployeeName, width: GridLength.Auto),
-                    x => isTopDown ? (x.DirectReports) : (x.Manager is null ? [] : [x.Manager])
+                    x => isTopDown
+                        ? (x.DirectReports)
+                        : (x.Manager is null
+                            ? []
+                            : [x.Manager])
                 ),
                 new TextColumn<Person, string>("Id", x => "" + x.EmployeeId, width: GridLength.Auto),
                 new TextColumn<Person, string>("Department", x => x.Department, width: GridLength.Auto),
