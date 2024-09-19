@@ -1,0 +1,90 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:peopleHrOrgChart="clr-namespace:PeopleHrOrgChart"
+             xmlns:vm="clr-namespace:PeopleHrOrgChart.Vm"
+             xmlns:views="clr-namespace:PeopleHrOrgChart.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:ViewModel"
+             x:Class="PeopleHrOrgChart.Views.MainView">
+      <DockPanel Margin="{Binding RelativeSource={RelativeSource AncestorType=peopleHrOrgChart:MainWindow}, Path=WindowDecorationMargin}">
+
+        <StackPanel Orientation="Horizontal"
+                    Spacing="9"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    DockPanel.Dock="Top">
+
+          <Label Target="IsTopDown" VerticalAlignment="Center">Top down:</Label>
+          <CheckBox Name="IsTopDown" IsChecked="{Binding TopDown.Value}" />
+
+          <!-- <Label Target="SearchText" VerticalAlignment="Center">Name:</Label> -->
+          <TextBox Name="SearchText"
+                   Width="200"
+                   VerticalAlignment="Center"
+                   InnerLeftContent="👤"
+                   Text="{Binding SearchText.Value}" />
+
+          <ComboBox Name="Department"
+                    Width="150"
+                    VerticalAlignment="Center"
+                    SelectedItem="{Binding DepartmentSelected.Value}"
+                    ItemsSource="{Binding DepartmentList}" />
+
+          <ComboBox Name="Location"
+                    Width="150"
+                    VerticalAlignment="Center"
+                    SelectedItem="{Binding LocationSelected.Value}"
+                    ItemsSource="{Binding LocationList}" />
+
+        </StackPanel>
+
+        <Rectangle HorizontalAlignment="Stretch"
+                   Height="0.5"
+                   Fill="{DynamicResource TitleBarSeparatorColorTop}"
+                   Margin="0 0 0 0"
+                   DockPanel.Dock="Top" />
+        <Rectangle HorizontalAlignment="Stretch"
+                   Height="0.5"
+                   Fill="{DynamicResource TitleBarSeparatorColorBottom}"
+                   Margin="0 0 0 0"
+                   DockPanel.Dock="Top" />
+
+        <StackPanel Orientation="Horizontal"
+                    Classes="status-bar"
+                    Background="{DynamicResource SystemControlHighlightListAccentHighBrush}"
+                    Name="StatusBar"
+                    DockPanel.Dock="Bottom">
+          <TextBlock HorizontalAlignment="Left" Padding="6">
+            <Run Text="Total:" />
+            <Run Text="{Binding People.Count}" />
+          </TextBlock>
+        </StackPanel>
+
+        <Rectangle HorizontalAlignment="Stretch"
+                   Height="0.5"
+                   Margin="0 0 0 0"
+                   Fill="{DynamicResource StatusBarSeparatorColorBottom}"
+                   DockPanel.Dock="Bottom" />
+        <!-- bottom ⬆️  -->
+        <!-- because dock priority, the stack of down docked items -->
+        <!-- the first one is the most down -->
+        <!-- ⬇️ top -->
+        <Rectangle HorizontalAlignment="Stretch"
+                   Height="0.5"
+                   Margin="0 0 0 0"
+                   Fill="{DynamicResource StatusBarSeparatorColorTop}"
+                   DockPanel.Dock="Bottom" />
+
+        <TabControl>
+          <TabItem Header="Org Tree">
+            <views:OrgTree />
+          </TabItem>
+          <TabItem Header="Logs">
+            <views:LogView />
+          </TabItem>
+        </TabControl>
+
+      </DockPanel>
+</UserControl>
