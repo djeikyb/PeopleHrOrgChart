@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Controls.Models.TreeDataGrid;
-using ObservableCollections;
+using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using PeopleHrOrgChart.Vm;
 using R3;
 using Serilog;
@@ -19,7 +21,7 @@ public partial class OrgTree : UserControl
 
         InitializeComponent();
 
-        DataContextChanged += (sender, e) =>
+        DataContextChanged += (sender, _) =>
         {
             var vm = ((OrgTree)sender).DataContext as ViewModel; // TODO this is gonna bite me
             vm.TopDown.Subscribe(isTopDown =>
@@ -34,6 +36,18 @@ public partial class OrgTree : UserControl
                 source.DisposeWith(ref OrgTreeSource);
 
                 PersonTable.Source = source;
+                PersonTable.DoubleTapped += (_, e) =>
+                {
+                    var found = PersonTable.GetInputElementsAt(e.GetPosition(PersonTable));
+                    var cells = (TreeDataGridCellsPresenter?)found.FirstOrDefault(ie => ie is TreeDataGridCellsPresenter);
+
+                    // ignore if it wasn't a row that wasn't tapped
+                    // iunno. maybe it was a column divider?
+                    if (cells is null) return;
+
+                    var row = PersonTable.Rows!.RowIndexToModelIndex(cells.RowIndex);
+                    source.Expand(row);
+                };
             });
 
             _logger.Information("Creating first tree grid!");
