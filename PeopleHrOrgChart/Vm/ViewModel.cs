@@ -32,6 +32,11 @@ public class ViewModel
 
         root ??= new PersonRoot();
         var employees = root.Data?.EmployeeList ?? [];
+        employees.Sort((a, b) => string.CompareOrdinal(a.JobRole, b.JobRole) switch
+        {
+            0 => -string.CompareOrdinal(a.Location, b.Location),
+            var v => v
+        });
         foreach (var person in employees)
         {
             person.DirectReports = employees.Where(x => x.ReportsTo == person.EmployeeId).ToList();
