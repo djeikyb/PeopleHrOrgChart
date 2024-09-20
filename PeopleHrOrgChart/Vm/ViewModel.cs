@@ -15,6 +15,8 @@ public class ViewModel
         var logger = Log.ForContext<ViewModel>();
         var home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         var path = Path.Combine(home, "peoplehr.json");
+        logger.Information("Will load: {Path}", path);
+
         const int defaultBufferSize = 4096;
         var stream = new FileStream(
             path: path,
@@ -24,15 +26,19 @@ public class ViewModel
             bufferSize: defaultBufferSize * 2,
             options: FileOptions.SequentialScan
         );
-        var root = JsonSerializer.Deserialize<PersonRoot>(stream, PersonJsonContext.Default.PersonRoot);
 
-        foreach (var person in root.Data.EmployeeList)
+        var root = JsonSerializer.Deserialize<PersonRoot>(stream, PersonJsonContext.Default.PersonRoot);
+        if (root is null) logger.ForContext("Path", path).Error("Got null when deserializing org chart json.");
+
+        root ??= new PersonRoot();
+        var employees = root.Data?.EmployeeList ?? [];
+        foreach (var person in employees)
         {
-            person.DirectReports = root.Data.EmployeeList.Where(x => x.ReportsTo == person.EmployeeId).ToList();
-            person.Manager = root.Data.EmployeeList.FirstOrDefault(x => x.EmployeeId == person.ReportsTo);
+            person.DirectReports = employees.Where(x => x.ReportsTo == person.EmployeeId).ToList();
+            person.Manager = employees.FirstOrDefault(x => x.EmployeeId == person.ReportsTo);
         }
 
-        ObservableList<Person> peopleModels = new(root.Data.EmployeeList);
+        ObservableList<Person> peopleModels = new(employees);
         var view = peopleModels.CreateView(x => x);
         People = view.ToNotifyCollectionChanged(); // can't use AddRange with Slim
 
@@ -40,7 +46,7 @@ public class ViewModel
         SearchText = new();
 
         DepartmentList = new(
-            root.Data.EmployeeList
+            employees
                 .Select(x => x.Department)
                 .Order()
                 .Distinct()
@@ -49,7 +55,7 @@ public class ViewModel
         DepartmentSelected = new("Any department");
 
         LocationList = new(
-            root.Data.EmployeeList
+            employees
                 .Select(x => x.Location)
                 .Order()
                 .Distinct()

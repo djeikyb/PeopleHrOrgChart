@@ -10,12 +10,12 @@ namespace PeopleHrOrgChart.Vm;
 
 public class PersonRoot
 {
-    [JsonPropertyName("Data")] public PersonData Data { get; set; }
+    [JsonPropertyName("Data")] public PersonData? Data { get; set; }
 }
 
 public class PersonData
 {
-    [JsonPropertyName("EmployeeList")] public List<Person> EmployeeList { get; set; }
+    [JsonPropertyName("EmployeeList")] public List<Person>? EmployeeList { get; set; }
 }
 
 public class Person
