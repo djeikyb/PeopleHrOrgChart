@@ -25,10 +25,12 @@ public partial class OrgTree : UserControl
         {
             var vm = ((OrgTree)sender).DataContext as ViewModel; // TODO this is gonna bite me
             if (vm is null) return;
-            vm.TopDown.Subscribe(isTopDown =>
+            vm.TreeType.Subscribe(tt =>
             {
                 // TODO extension dispose with
                 // TODO dispose on DataContextChanged to avoid a memory leak
+
+                var isTopDown = tt != 0;
 
                 _logger.Information("Disposed old tree grid because switching top down orientation.");
                 OrgTreeSource?.Dispose();
@@ -52,7 +54,7 @@ public partial class OrgTree : UserControl
             });
 
             _logger.Information("Creating first tree grid!");
-            vm.TopDown.ForceNotify();
+            vm.TreeType.ForceNotify();
         };
     }
 

@@ -11,3 +11,6 @@ dotnet publish -c release -r osx-arm64
 
 It assumes you have a copy of the PeopleHR json at `~/peoplehr.json`.
 You can get one by watching network requests while clicking around the web ui.
+
+All PathIcon data is derived from Font Awesome Free 6.6.0 SVG icons.
+Thanks to Fonticons Inc. for licensing them [CC BY 4.0](https://fontawesome.com/license/free)!

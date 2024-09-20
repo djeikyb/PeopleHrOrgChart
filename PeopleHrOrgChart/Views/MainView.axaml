@@ -13,12 +13,58 @@
 
     <StackPanel Orientation="Horizontal"
                 Spacing="9"
+                Margin="9 0 0 9"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
                 DockPanel.Dock="Top">
 
-      <Label Target="IsTopDown" VerticalAlignment="Center">Top down:</Label>
-      <CheckBox Name="IsTopDown" IsChecked="{Binding TopDown.Value}" />
+      <ListBox SelectedIndex="{Binding TreeType.Value}"
+               SelectionMode="Single"
+               Background="Transparent">
+        <ListBoxItem>
+          <PathIcon
+            Foreground="{DynamicResource SystemControlHighlightAltBaseMediumBrush}"
+            RenderTransform="rotate(180deg)"
+            Classes="fa-solid fa-sitemap" />
+        </ListBoxItem>
+        <ListBoxItem>
+          <PathIcon
+            Foreground="{DynamicResource SystemControlHighlightAltBaseMediumBrush}"
+            Classes="fa-solid fa-sitemap" />
+        </ListBoxItem>
+        <ListBox.ItemsPanel>
+          <ItemsPanelTemplate>
+            <StackPanel Orientation="Horizontal" Spacing="3" Background="Transparent" />
+          </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
+        <ListBox.Styles>
+
+          <Style Selector="ListBoxItem:pointerover:not(:selected) /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background"
+                    Value="Transparent" />
+          </Style>
+          <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background"
+                    Value="{DynamicResource SystemListLowColor}" />
+          </Style>
+          <Style Selector="ListBox">
+            <Setter Property="BorderBrush"
+                    Value="{DynamicResource SystemListLowColor}" />
+            <Setter Property="BorderThickness"
+                    Value="1" />
+            <Setter Property="CornerRadius"
+                    Value="3" />
+          </Style>
+          <Style Selector="ListBoxItem">
+            <Setter Property="Height"
+                    Value="{DynamicResource TextControlThemeMinHeight}" />
+            <Setter Property="CornerRadius"
+                    Value="3" />
+            <Setter Property="Padding"
+                    Value="9 6 9 6" />
+          </Style>
+        </ListBox.Styles>
+      </ListBox>
 
       <!-- <Label Target="SearchText" VerticalAlignment="Center">Name:</Label> -->
       <TextBox Name="SearchText"
@@ -29,7 +75,7 @@
                Text="{Binding SearchText.Value}" />
 
       <ComboBox Name="Department"
-                Width="150"
+                Width="165"
                 VerticalAlignment="Center"
                 SelectedItem="{Binding DepartmentSelected.Value}"
                 ItemsSource="{Binding DepartmentList}" />
@@ -60,8 +106,8 @@
                Padding="6"
                Background="{DynamicResource SystemChromeLowColor }"
                DockPanel.Dock="Bottom">
-      <Run Text="Total:" />
-      <Run Text="{Binding People.Count}" />
+      <TextBlock Text="Total:" />
+      <TextBlock Text="{Binding People.Count}" />
     </TextBlock>
 
     <Rectangle HorizontalAlignment="Stretch"

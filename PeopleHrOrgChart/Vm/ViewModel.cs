@@ -42,7 +42,7 @@ public class ViewModel
         var view = peopleModels.CreateView(x => x);
         People = view.ToNotifyCollectionChanged(); // can't use AddRange with Slim
 
-        TopDown = new(false);
+        TreeType = new(0);
         SearchText = new();
 
         DepartmentList = new(
@@ -64,7 +64,7 @@ public class ViewModel
         LocationSelected = new("Any location");
 
         Observable.Merge(
-                TopDown.Select(_ => string.Empty),
+                TreeType.Select(_ => string.Empty),
                 SearchText.Select(_ => string.Empty),
                 DepartmentSelected,
                 LocationSelected
@@ -73,17 +73,20 @@ public class ViewModel
             {
                 view.AttachFilter(new Filter(
                     SearchText.Value,
-                    TopDown.Value,
+                    TreeType.Value,
                     DepartmentSelected.Value,
                     LocationSelected.Value
                 ));
             });
     }
 
-    class Filter(string? term, bool topDown, string department, string location) : ISynchronizedViewFilter<Person>
+    class Filter(string? term, int treeType, string department, string location) : ISynchronizedViewFilter<Person>
     {
         public bool IsMatch(Person person)
         {
+            bool topDown = treeType != 0; // an enum would be more proper
+            //                            // tho tbh if i wasn't using a listbox, this would be a bool
+
             bool td = !topDown || topDown && person.DirectReports.Count > 0;
             bool d = department is "Any department" || department.Equals(person.Department);
             bool l = location is "Any location" || location.Equals(person.Location);
@@ -114,7 +117,7 @@ public class ViewModel
     public BindableReactiveProperty<string> LocationSelected { get; set; }
     public ObservableList<string> LocationList { get; set; }
 
-    public BindableReactiveProperty<bool> TopDown { get; }
+    public BindableReactiveProperty<int> TreeType { get; }
     public INotifyCollectionChangedSynchronizedViewList<Person> People { get; }
     public BindableReactiveProperty<string?> SearchText { get; }
 }
