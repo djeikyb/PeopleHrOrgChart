@@ -13,7 +13,8 @@ public class ViewModel
     public ViewModel()
     {
         var logger = Log.ForContext<ViewModel>();
-        var path = "/Users/jacob/Downloads/org.json";
+        var home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        var path = Path.Combine(home, "peoplehr.json");
         const int defaultBufferSize = 4096;
         var stream = new FileStream(
             path: path,
