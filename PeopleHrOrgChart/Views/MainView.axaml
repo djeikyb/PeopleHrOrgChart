@@ -5,6 +5,7 @@
              xmlns:peopleHrOrgChart="clr-namespace:PeopleHrOrgChart"
              xmlns:vm="clr-namespace:PeopleHrOrgChart.Vm"
              xmlns:views="clr-namespace:PeopleHrOrgChart.Views"
+             xmlns:fa="clr-namespace:Merviche.FontAwesome"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:ViewModel"
              x:Class="PeopleHrOrgChart.Views.MainView">
@@ -29,8 +30,9 @@
         </ListBoxItem>
         <ListBoxItem>
           <PathIcon
+            Data="{fa:Icon Sitemap, Regular}"
             Foreground="{DynamicResource SystemControlHighlightAltBaseMediumBrush}"
-            Classes="fa-solid fa-sitemap" />
+            />
         </ListBoxItem>
         <ListBox.ItemsPanel>
           <ItemsPanelTemplate>
