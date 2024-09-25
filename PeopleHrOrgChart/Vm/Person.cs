@@ -22,10 +22,10 @@ public class Person
 {
     [JsonPropertyName("EmployeeId")] public int EmployeeId { get; set; }
     [JsonPropertyName("ReportsTo")] public int ReportsTo { get; set; }
-    [JsonPropertyName("Picture")] public string Picture { get; set; }
+    // [JsonPropertyName("Picture")] public string Picture { get; set; }
     [JsonPropertyName("EmployeeName")] public string EmployeeName { get; set; }
     [JsonPropertyName("JobRole")] public string JobRole { get; set; }
-    [JsonPropertyName("Company")] public string Company { get; set; }
+    // [JsonPropertyName("Company")] public string Company { get; set; }
     [JsonPropertyName("Location")] public string Location { get; set; }
     [JsonPropertyName("Department")] public string Department { get; set; }
     [JsonPropertyName("Length")] public string Length { get; set; }
