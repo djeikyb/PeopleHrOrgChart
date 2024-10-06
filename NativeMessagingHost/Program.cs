@@ -1,10 +1,8 @@
 ﻿using System.Buffers.Binary;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
+using OrgChart.Core;
 
 namespace NativeMessagingHost;
 
@@ -35,6 +33,9 @@ public static class Program
         // return 0;
 
         // ~/Library/Application Support/Chromium/NativeMessagingHosts/com.my_company.my_application.json
+
+        // FYI stderr goes to:
+        // - firefox: tools > browser console
 
         Console.Error.WriteLine("starting program");
 
@@ -70,7 +71,7 @@ public static class Program
             //     Thread.Sleep(100);
             // }
 
-            var buf = new byte[1024 * 5];
+            var buf = new byte[1024 * 1024 * 5];
             while (!ct.IsCancellationRequested)
             {
                 // UnixConsoleStream has a blocking read
@@ -85,19 +86,59 @@ public static class Program
                     return -1;
                 }
 
-                // throw new Exception("oops");
-
-                var len = BinaryPrimitives.ReadInt32LittleEndian(buf);
-                if (len >= buf.Length)
+                var payloadLength = BinaryPrimitives.ReadInt32LittleEndian(buf);
+                if (payloadLength >= buf.Length)
                 {
                     // oop too big
-                    throw new Exception($"Exceeded max message size of {buf.Length}. Was sent {len}.");
+                    throw new Exception($"Exceeded max message size of {buf.Length}. Was sent {payloadLength}.");
                 }
 
-                read = stdin.Read(buf, 0, len);
-                var s = Encoding.UTF8.GetString(buf.AsSpan(0, read));
+                // stdin must be buffered or something
+                // initial trials w/ a 76k json payload..
+                // first chunk was 65536 then..
+                // oh wait. that's a key marker lol.
+                // i bet postMessage has a byte[sizeof(ushort)] buffer
+                // best not to rely on that specific size, but just keep reading..
+                int payloadRead;
+                for (payloadRead = 0; payloadRead < payloadLength;)
+                {
+                    if (ct.IsCancellationRequested) break;
+                    var want = payloadLength - payloadRead;
+                    read = stdin.Read(buf, payloadRead, want);
+                    payloadRead += read;
+                }
 
-                nmw.Write("pong");
+                PersonRoot? root;
+                try
+                {
+                    if (payloadRead != payloadLength)
+                    {
+                        // oh no
+                        throw new Exception($"""
+                                             Expected {payloadLength} bytes
+                                              but got {payloadRead} bytes
+                                             """);
+                    }
+
+                    var span = buf.AsSpan(0, payloadRead);
+                    var s = Encoding.UTF8.GetString(span);
+                    File.WriteAllText("/Users/jacob/dev/me/active/ava/PeopleHrOrgChart/latest-received.txt", s);
+                    root = JsonSerializer.Deserialize(span, PersonJsonContext.Default.PersonRoot);
+                }
+                catch (Exception e)
+                {
+                    var span = buf.AsSpan(0, read);
+                    var s = Encoding.UTF8.GetString(span);
+                    File.WriteAllText("/Users/jacob/dev/me/active/ava/PeopleHrOrgChart/latest-error.txt", s);
+                    root = null;
+                    Console.Error.WriteLine(e);
+                }
+
+                if (root != null) nmw.Write("PONG");
+                else nmw.Write("pong");
+
+                // {"requestId":"2024","url":"https://eikongroup.peoplehr.accessacloud.com/Pages/LeftSegment/Notification.aspx","originUrl":"https://eikongroup.peoplehr.accessacloud.com/Pages/LeftSegment/OrganisationChart.aspx","method":"GET","type":"main_frame","timeStamp":1728154572192,"tabId":1,"frameId":0,"parentFrameId":-1,"incognito":false,"thirdParty":false,"cookieStoreId":"firefox-default","fromCache":false,"statusCode":200,"statusLine":"HTTP/2.0 200 ","proxyInfo":null,"ip":"104.18.34.63","frameAncestors":[],"urlClassification":{"firstParty":[],"thirdParty":[]},"requestSize":1139,"responseSize":31026}
+
                 // var pong = "\"pong\""u8;
                 // BinaryPrimitives.WriteInt32LittleEndian(buf, pong.Length);
                 // stdout.Write(buf.AsSpan().Slice(0, 4));

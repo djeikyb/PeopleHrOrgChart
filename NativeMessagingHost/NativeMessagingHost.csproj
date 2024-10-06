@@ -14,4 +14,8 @@
       <PackageReference Include="DotNext.IO" Version="5.13.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\OrgChart.Core\OrgChart.Core.csproj" />
+    </ItemGroup>
+
 </Project>

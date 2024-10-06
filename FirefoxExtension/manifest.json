@@ -26,6 +26,7 @@
     "<all_urls>",
     "https://*.peoplehr.accessacloud.com/*",
     "webRequest",
+    "webRequestBlocking",
     "cookies",
     "nativeMessaging"
   ]
