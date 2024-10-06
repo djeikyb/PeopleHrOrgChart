@@ -48,4 +48,8 @@
     <PackageReference Condition="$(DefineConstants.Contains(ENABLE_XAML_HOT_RELOAD))" Include="HotAvalonia" Version="1.1.1"/>
     <PackageReference Include="HotAvalonia.Extensions" Version="1.1.1" PrivateAssets="All"/>
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OrgChart.Core\OrgChart.Core.csproj" />
+  </ItemGroup>
 </Project>

@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{0398B607
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeMessagingHost", "NativeMessagingHost\NativeMessagingHost.csproj", "{95A609CA-F853-44CF-8662-5A6D88E004DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrgChart.Core", "OrgChart.Core\OrgChart.Core.csproj", "{FE84BE59-5A5D-4285-9F2B-EB2D033DD75A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,5 +34,9 @@ Global
 		{95A609CA-F853-44CF-8662-5A6D88E004DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95A609CA-F853-44CF-8662-5A6D88E004DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95A609CA-F853-44CF-8662-5A6D88E004DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE84BE59-5A5D-4285-9F2B-EB2D033DD75A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE84BE59-5A5D-4285-9F2B-EB2D033DD75A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE84BE59-5A5D-4285-9F2B-EB2D033DD75A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE84BE59-5A5D-4285-9F2B-EB2D033DD75A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

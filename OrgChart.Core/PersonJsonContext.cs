@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace PeopleHrOrgChart.Vm;
+namespace OrgChart.Core;
 
 [JsonSerializable(typeof(PersonRoot))]
 public partial class PersonJsonContext : JsonSerializerContext
