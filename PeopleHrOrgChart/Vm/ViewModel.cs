@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using ObservableCollections;
+using OrgChart.Core;
 using R3;
 using Serilog;
 
@@ -27,7 +28,7 @@ public class ViewModel
             options: FileOptions.SequentialScan
         );
 
-        var root = JsonSerializer.Deserialize<PersonRoot>(stream, PersonJsonContext.Default.PersonRoot);
+        var root = JsonSerializer.Deserialize<PersonRoot>(stream, OrgChart.Core.PersonJsonContext.Default.PersonRoot);
         if (root is null) logger.ForContext("Path", path).Error("Got null when deserializing org chart json.");
 
         root ??= new PersonRoot();

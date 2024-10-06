@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrgChart.Core", "OrgChart.Core\OrgChart.Core.csproj", "{FE84BE59-5A5D-4285-9F2B-EB2D033DD75A}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleHrOrgChart", "PeopleHrOrgChart\PeopleHrOrgChart.csproj", "{15919D27-6A1C-4985-A31E-04E98135B62B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{0398B607-387D-456B-9579-B6C9BC875BFE}"
@@ -22,6 +24,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE84BE59-5A5D-4285-9F2B-EB2D033DD75A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE84BE59-5A5D-4285-9F2B-EB2D033DD75A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE84BE59-5A5D-4285-9F2B-EB2D033DD75A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE84BE59-5A5D-4285-9F2B-EB2D033DD75A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{15919D27-6A1C-4985-A31E-04E98135B62B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15919D27-6A1C-4985-A31E-04E98135B62B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15919D27-6A1C-4985-A31E-04E98135B62B}.Release|Any CPU.ActiveCfg = Release|Any CPU

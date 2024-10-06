@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Models.TreeDataGrid;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
+using OrgChart.Core;
 using PeopleHrOrgChart.Vm;
 using R3;
 using Serilog;

@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace PeopleHrOrgChart.Vm;
+namespace OrgChart.Core;
 
 // TODO fix null warnings by using json schema?
 // https://github.com/json-everything/json-everything
