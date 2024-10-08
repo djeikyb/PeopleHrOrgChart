@@ -7,6 +7,8 @@ namespace OrgChart.Core;
 // https://blog.json-everything.net/posts/deserialization-with-schemas/
 // https://github.com/dotnet/runtime/issues/29887
 
+#pragma warning disable CS8618
+
 public class PersonRoot
 {
     [JsonPropertyName("Data")] public PersonData? Data { get; set; }
@@ -35,3 +37,5 @@ public class Person
     /// Populated in memory, not part of People HR dump
     [JsonIgnore] public Person? Manager { get; set; }
 }
+
+#pragma warning restore CS8618
