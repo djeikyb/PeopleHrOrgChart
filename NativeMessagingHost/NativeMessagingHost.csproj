@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <InvariantGlobalization>true</InvariantGlobalization>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <PublishAot>true</PublishAot>
+        <TrimMode>full</TrimMode>
+        <DebugSymbols>False</DebugSymbols>
+        <DebugType>None</DebugType>
+        <TrimmerRemoveSymbols>true</TrimmerRemoveSymbols>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\OrgChart.Core\OrgChart.Core.csproj" />
+    </ItemGroup>
+
+</Project>

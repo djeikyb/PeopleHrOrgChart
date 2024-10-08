@@ -1,0 +1,33 @@
+{
+  "description": "Native messaging example add-on",
+  "manifest_version": 2,
+  "name": "OrgChart Extension",
+  "version": "0.0.1",
+  "icons": {
+    "32": "icons/otter-solid.svg",
+    "48": "icons/otter-solid.svg",
+    "96": "icons/otter-solid.svg"
+  },
+  "applications": {
+    "gecko": {
+      "id": "merviche.orgchart.nmext@example.org",
+      "strict_min_version": "79.0"
+    }
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "browser_action": {
+    "default_icon": "icons/otter-solid.svg"
+  },
+  "permissions": [
+    "<all_urls>",
+    "https://*.peoplehr.accessacloud.com/*",
+    "webRequest",
+    "webRequestBlocking",
+    "cookies",
+    "nativeMessaging"
+  ]
+}

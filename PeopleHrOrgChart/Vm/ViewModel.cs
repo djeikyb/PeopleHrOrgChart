@@ -1,7 +1,5 @@
 using System;
-using System.IO;
 using System.Linq;
-using System.Text.Json;
 using ObservableCollections;
 using OrgChart.Core;
 using R3;
@@ -14,24 +12,24 @@ public class ViewModel
     public ViewModel()
     {
         var logger = Log.ForContext<ViewModel>();
-        var home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-        var path = Path.Combine(home, "peoplehr.json");
-        logger.Information("Will load: {Path}", path);
 
-        const int defaultBufferSize = 4096;
-        var stream = new FileStream(
-            path: path,
-            mode: FileMode.Open,
-            access: FileAccess.Read,
-            share: FileShare.Read,
-            bufferSize: defaultBufferSize * 2,
-            options: FileOptions.SequentialScan
-        );
+        PersonRoot root;
+        try
+        {
+            using var db = Db.Open();
+            root = db.Latest();
+        }
+        catch (Exception e)
+        {
+            // TODO communicate this to the ui
+            //      no data?
+            //      bad data?
+            //      something else?
+            //      maybe let drag-and-drop json file onto app and save _that_?
+            root = new PersonRoot();
+            logger.Error(e, "Failed to fetch latest org chart from app data.");
+        }
 
-        var root = JsonSerializer.Deserialize<PersonRoot>(stream, OrgChart.Core.PersonJsonContext.Default.PersonRoot);
-        if (root is null) logger.ForContext("Path", path).Error("Got null when deserializing org chart json.");
-
-        root ??= new PersonRoot();
         var employees = root.Data?.EmployeeList ?? [];
         employees.Sort((a, b) => string.CompareOrdinal(a.JobRole, b.JobRole) switch
         {
