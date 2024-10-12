@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+     viewBox="0 0 47 47"
+     preserveAspectRatio="xMinYMin meet">
+
+    <style>
+        :root{
+            --hat-fill-h: 29;
+            --hat-fill-s: 38%;
+            --hat-fill-l: 65%;
+            --hat-fill-a: 1.0;
+        }
+
+        .hat-border{
+            fill: hsla(
+                var(--hat-fill-h),
+                calc(var(--hat-fill-s) * 0.3),
+                calc(var(--hat-fill-l) * 0.75),
+                var(--hat-fill-a)
+            );
+            stroke: none;
+            stroke-width: 0.3
+        }
+
+        .hat{
+            fill: hsla(
+                var(--hat-fill-h),
+                var(--hat-fill-s),
+                var(--hat-fill-l),
+                var(--hat-fill-a)
+            );
+            stroke: none;
+            stroke-width: 0.3;
+        }
+
+        .hat-shadow{
+            fill: hsla(
+                var(--hat-fill-h),
+                var(--hat-fill-s),
+                calc(var(--hat-fill-l)*.6),
+                var(--hat-fill-a)
+            );
+            stroke: none;
+            stroke-width: 0.3;
+        }
+
+        .hat-crease{
+            fill: hsla(
+                var(--hat-fill-h),
+                var(--hat-fill-s),
+                calc(var(--hat-fill-l)*.45),
+                var(--hat-fill-a)
+            );
+            stroke: none;
+            stroke-width: 0.3;
+        }
+
+        .body{
+            fill:hsla(192, 28%, 63%, 1.00);
+            stroke: none;
+            stroke-width: 0.3;
+        }
+
+        .egg{
+            fill: rgba(255, 255, 255, 1.00);
+            stroke: none;
+            stroke-width: 0.3;
+        }
+
+        .yolk{
+            fill: rgba(54, 96, 203, 1.00);
+            stroke: none;
+            stroke-width: 0.3;
+        }
+
+    </style>
+
+
+    <defs>
+        <path class="egg" id="egg" d="m2 0 h4 v2 h2 v6 h-2 v2 h-4 v-2 h-2 v-6 h2 Z"/>
+        <polyline class="body" id="footl" points="0,0 8,0 8,2 6,2 6,4 2,4 2,2 0,2 "/>
+        <path class="body" id="footr" d="m2 0 h4 v2 h2 v6 h-2 v2 h-4 v-2 h-2 v-6 h2 Z"/>
+    </defs>
+
+    <!--    body-->
+    <rect class="body" x="18" y="15" width="8" height="2"/>
+    <rect class="body" x="14" y="17" width="16" height="2"/>
+    <rect class="body" x="12" y="19" width="20" height="2"/>
+    <rect class="body" x="10" y="21" width="24" height="6"/>
+    <rect class="body" x="8" y="27" width="28" height="12"/>
+
+    <!--    eggs-->
+    <use x="14" y="21" href="#egg"/>
+    <use x="26" y="21" href="#egg"/>
+
+    <!--    yolks-->
+    <rect class="yolk" x="14" y="25" width="4" height="4"/>
+    <rect class="yolk" x="26" y="25" width="4" height="4"/>
+
+    <!--    feetses-->
+    <use x="8" y="39" href="#footl"/>
+    <use x="18" y="39" href="#footl"/>
+    <use x="28" y="39" href="#footl"/>
+
+    <!--    hat border-->
+    <path class="hat-border"
+          d="M2,19
+             v-4h1
+             v-2h1
+             v-2h2
+             v-1h2
+             v-1h3
+             v1h4
+             v-3h2
+             v-1h13
+             v1h2v1h1v2h1v1
+             v6h1v4h1v-1h2v-1h2v-1h2
+             v1h1v1h1
+             v2h1v3
+             h-1v2h-9
+             v-1h-2v-1
+             h-2v-1h-1v-1
+             h-2v-1h-1v-1
+             h-3v-1
+             h-4v-1
+             h-8
+             v2h-1v2h-2v1
+             h-4
+             v-1h-1v-1h-1v-3h-1
+            "/>
+
+    <!--    hat fill-->
+    <path class="hat"
+          d="M3,19
+             v-4h1
+             v-2h1
+             v-1h1
+             v-1h2
+             v-1h3
+             v1h4
+             v-1h1v-2h1v-1h13
+             v1h2v2h1v7h1v4
+             h-1v1
+             h3v-1h2v-1h2v-1h2
+             v1h1v5h-1v1
+             h-7
+             v-1h-2
+             v-1h-1v-1h-2
+             v-1h-1v-1h-2
+             v-1h-1v-1h-1v-1h-3
+             v1h-2v-1
+             h-8
+             v1h-1v1h-1v2h-1v1
+             h-4
+             v-1h-1v-3
+             h-1
+            "/>
+
+    <!--    shadow-->
+    <path class="hat-shadow"
+          d="M15,10
+             h1v2h3v1h1v1
+             h-2v-1h-2v-1h-1v-2
+
+             M23,17
+             h2v1h4v1h3v1h1v2
+             h-4v-1h-2v-1h-1v-1h-1v-1h-2v-1
+          "
+    />
+
+    <!--     outer brim-->
+    <path class="hat-border"
+          d="M14,11
+             h1v1h1v1h2v1h1
+             v1h1v1h1v1
+             h2
+             v1h-2v-1
+             h-2
+             v-1h-1v-1h-1v-1
+             h-2v-1h-1
+             v-2
+    "/>
+
+    <!-- crease -->
+    <path class="hat-crease"
+          d="M19,14
+             h10v1h3v1h1v1
+             h-1v-1h-3v-1h-3
+             v1h3v1h3v1h2v3
+             h-1v-1h-1v-1h-3v-1
+             h-4v-1h-4v-1h-1v-1h-1v-1
+    "/>
+
+</svg>

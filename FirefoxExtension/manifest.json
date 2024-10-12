@@ -4,9 +4,9 @@
   "name": "OrgChart Extension",
   "version": "0.0.1",
   "icons": {
-    "32": "icons/otter-solid.svg",
-    "48": "icons/otter-solid.svg",
-    "96": "icons/otter-solid.svg"
+    "32": "icons/blinky.svg",
+    "48": "icons/blinky.svg",
+    "96": "icons/blinky.svg"
   },
   "applications": {
     "gecko": {
@@ -20,7 +20,7 @@
     ]
   },
   "browser_action": {
-    "default_icon": "icons/otter-solid.svg"
+    "default_icon": "icons/blinky.svg"
   },
   "permissions": [
     "<all_urls>",
