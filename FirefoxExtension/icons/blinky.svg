@@ -118,8 +118,8 @@
             "/>
 
 <!--    shadow-->
-    <path fill="rgba(241, 241, 240, 1.00)"
-          stroke="rgba(254, 92, 86, 1.00)"
+    <path fill="rgba(88, 198, 255, 1.00)"
+          stroke="rgba(254, 92, 86, 0.20)"
           stroke-width=".3"
           d="M15,10
              h1v2h3v1h1v1
@@ -131,7 +131,35 @@
           "
           />
 
-<!--    this fills the left brim -->
+    <!--     outer brim-->
+    <path fill="rgba(254, 106, 193, 0.7)"
+          stroke="rgba(243, 249, 157, 1.00)"
+          stroke-width=".3"
+          d="M14,11
+    h1v1h1v1h2v1h1
+    v1h1v1h1v1
+    h2
+    v1h-2v-1
+    h-2
+    v-1h-1v-1h-1v-1
+    h-2v-1h-1
+    v-2
+    "/>
+
+    <!-- crease -->
+    <path fill="rgba(241, 241, 240, 1.00)"
+          stroke="rgba(254, 92, 86, 1.00)"
+          stroke-width=".2"
+          d="M19,14
+             h10v1h3v1h1v1
+             h-1v-1h-3v-1h-3
+             v1h3v1h3v1h2v3
+             h-1v-1h-1v-1h-3v-1
+             h-4v-1h-4v-1h-1v-1h-1v-1
+    "/>
+
+
+    <!--    this fills the left brim -->
 <!--    <path fill="rgba(153, 237, 254, 0.99)"-->
 <!--          stroke="rgba(243, 249, 157, 1.00)"-->
 <!--          stroke-width=".3"-->
