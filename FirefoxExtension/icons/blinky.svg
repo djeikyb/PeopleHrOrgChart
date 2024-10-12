@@ -1,70 +1,85 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
      viewBox="0 0 47 47"
-     preserveAspectRatio="xMidYMid slice">
+     preserveAspectRatio="xMinYMin meet">
+
+    <style>
+        svg{
+          background: hsla(173.5,   44%, 51%, 1.00);
+        /* color pick original: hsla(172,   35%, 57%, 1.00) */
+        /* but when viewing the svg, compare color picker png w/ svg */
+        /* this is what actually matches the png: hsl(173.5, 44%, 51%) */
+        }
+        .hat-border{
+          fill: rgba(53, 31, 9, 1.00);
+          stroke: none;
+          stroke-width: 0.3
+        }
+        .hat{
+          /*fill: rgba(177, 124, 81, 1.00);*/
+          /*fill: hsla(27, 38%, 51%, 1.00);*/
+          fill: hsla(25.5, 45%, 51%, 1.00);
+          stroke: none;
+          stroke-width: 0.3
+        }
+        .hat-shadow{
+          fill: rgba(154, 100, 60, 1.00);
+          stroke: none;
+          stroke-width: 0.3
+        }
+        .hat-crease{
+          fill: rgba(28, 16, 3, 1.00);
+          stroke: none;
+          stroke-width: 0.3
+        }
+        .body{
+          /*fill: rgba(91, 82, 112, 1.00);*/
+          /*fill: hsla(258, 15%, 38%, 1.00)*/
+          fill: hsla(260, 16.5%, 38.5%, 1.00);
+          stroke: none;
+          stroke-width: 0.3
+        }
+        .egg{
+          fill: rgba(255, 255, 255, 1.00);
+          stroke: none;
+          stroke-width: 0.3
+        }
+        .yolk{
+          /*fill: rgba(65, 95, 196, 1.00);*/
+          /*fill: hsla(226, 53%, 51%, 1.00);*/
+          fill: hsla(222.5, 59%, 50%, 1.00);
+          stroke: none;
+          stroke-width: 0.3
+        }
+    </style>
 
     <defs>
-        <path id="egg" d="m2 0 h4 v2 h2 v6 h-2 v2 h-4 v-2 h-2 v-6 h2 Z"/>
-        <path id="pupil" d="m2 0 h4 v2 h2 v6 h-2 v2 h-4 v-2 h-2 v-6 h2 Z"/>
-        <!--        <path id="footl" d="m0 0 h8 v-2 h-8 v2 Z" />-->
-        <polyline id="footl" points="0,0 8,0 8,2 6,2 6,4 2,4 2,2 0,2 " fill="rgba(65, 95, 196, 1.00)"/>
-        <!--        <path id="footr" d="m0 " />-->
-        <path id="footr" d="m2 0 h4 v2 h2 v6 h-2 v2 h-4 v-2 h-2 v-6 h2 Z"/>
+        <path class="egg" id="egg" d="m2 0 h4 v2 h2 v6 h-2 v2 h-4 v-2 h-2 v-6 h2 Z"/>
+        <polyline class="body" id="footl" points="0,0 8,0 8,2 6,2 6,4 2,4 2,2 0,2 " />
+        <path class="body" id="footr" d="m2 0 h4 v2 h2 v6 h-2 v2 h-4 v-2 h-2 v-6 h2 Z"/>
     </defs>
 
-    <!--    background-->
-    <rect x="0" y="0" width="47" height="47" fill="rgba(105, 184, 174, 1.00)"/>
-
     <!--    body-->
-    <rect x="18" y="15" width="8" height="2" fill="rgba(199, 70, 99, 1.00)"/>
-    <rect x="14" y="17" width="16" height="2" fill="rgba(199, 70, 99, 1.00)"/>
-    <rect x="12" y="19" width="20" height="2" fill="rgba(199, 70, 99, 1.00)"/>
-    <rect x="10" y="21" width="24" height="6" fill="rgba(199, 70, 99, 1.00)"/>
-    <rect x="8" y="27" width="28" height="12" fill="rgba(199, 70, 99, 1.00)"/>
+    <rect class="body" x="18" y="15" width="8" height="2" />
+    <rect class="body" x="14" y="17" width="16" height="2" />
+    <rect class="body" x="12" y="19" width="20" height="2" />
+    <rect class="body" x="10" y="21" width="24" height="6" />
+    <rect class="body" x="8" y="27" width="28" height="12" />
 
     <!--    eggs-->
-    <use x="14" y="21" href="#egg" fill="#fff"/>
-    <use x="26" y="21" href="#egg" fill="#fff"/>
+    <use x="14" y="21" href="#egg" />
+    <use x="26" y="21" href="#egg" />
 
-    <!--    pupils-->
-    <rect x="14" y="25" width="4" height="4" fill="rgba(65, 95, 196, 1.00)"/>
-    <rect x="26" y="25" width="4" height="4" fill="rgba(65, 95, 196, 1.00)"/>
+    <!--    yolks-->
+    <rect class="yolk" x="14" y="25" width="4" height="4" />
+    <rect class="yolk" x="26" y="25" width="4" height="4" />
 
-    <!--    <polyline points="0,0 8,0 8,2 6,2 6,4 2,4 2,2 0,2 " fill="rgba(65, 95, 196, 1.00)" />-->
-    <!--    <path id="footl" x="8" y="39" fill="footl" />-->
-    <use x="8" y="39" href="#footl" fill="rgba(199, 70, 99, 1.00)"/>
-    <use x="18" y="39" href="#footl" fill="rgba(199, 70, 99, 1.00)"/>
-    <use x="28" y="39" href="#footl" fill="rgba(199, 70, 99, 1.00)"/>
-    <!--    <use x="18" y="39" href="#footr" fill="rgba(199, 70, 99, 1.00)" />-->
-    <!--    <path id="footr" d="m2 0 h4 v2 h2 v6 h-2 v2 h-4 v-2 h-2 v-6 h2 Z"  />-->
+<!--    feetses-->
+    <use x="8" y="39" href="#footl" />
+    <use x="18" y="39" href="#footl" />
+    <use x="28" y="39" href="#footl" />
 
-    <!--    <polyline points="2,18 2,15 3,14" fill="none" stroke="red" stroke-width="1" />-->
-    <!--    <path-->
-
-<!--    this is just the left brim -->
-<!--    <path fill="rgba(254, 106, 193, 0.9)"-->
-<!--          stroke="rgba(243, 249, 157, 1.00)"-->
-<!--          stroke-width=".3"-->
-<!--          d="M2,19-->
-<!--             v-4h1-->
-<!--             v-2h1-->
-<!--             v-2h2-->
-<!--             v-1h2-->
-<!--             v-1h3-->
-<!--             v1h4-->
-<!--             v2h1v1h2v1h1v1h1v1h2v1h1-->
-<!--             v3h-3-->
-<!--             v-1h-8-->
-<!--             v2h-1-->
-<!--             v2h-2-->
-<!--             v1h-4-->
-<!--             v-1h-1-->
-<!--             v-1h-1-->
-<!--             v-3h-1-->
-<!--            "/>-->
-
-    <path fill="rgba(254, 106, 193, 0.9)"
-          stroke="rgba(243, 249, 157, 1.00)"
-          stroke-width=".3"
+    <!--    hat border-->
+    <path class="hat-border"
           d="M2,19
              v-4h1
              v-2h1
@@ -90,9 +105,8 @@
              v-1h-1v-1h-1v-3h-1
             "/>
 
-    <path fill="rgba(153, 237, 254, 0.79)"
-          stroke="rgba(88, 247, 142, 1.00)"
-          stroke-width=".3"
+    <!--    hat fill-->
+    <path class="hat"
           d="M3,19
              v-4h1
              v-2h1
@@ -101,8 +115,9 @@
              v-1h3
              v1h4
              v-1h1v-2h1v-1h13
-             v1h2v2h1v7h1v5
-             h2v-1h2v-1h2v-1h2
+             v1h2v2h1v7h1v4
+             h-1v1
+             h3v-1h2v-1h2v-1h2
              v1h1v5h-1v1
              h-7
              v-1h-2
@@ -117,10 +132,8 @@
              h-1
             "/>
 
-<!--    shadow-->
-    <path fill="rgba(88, 198, 255, 1.00)"
-          stroke="rgba(254, 92, 86, 0.20)"
-          stroke-width=".3"
+    <!--    shadow-->
+    <path class="hat-shadow"
           d="M15,10
              h1v2h3v1h1v1
              h-2v-1h-2v-1h-1v-2
@@ -129,27 +142,23 @@
              h2v1h4v1h3v1h1v2
              h-4v-1h-2v-1h-1v-1h-1v-1h-2v-1
           "
-          />
+    />
 
     <!--     outer brim-->
-    <path fill="rgba(254, 106, 193, 0.7)"
-          stroke="rgba(243, 249, 157, 1.00)"
-          stroke-width=".3"
+    <path class="hat-border"
           d="M14,11
-    h1v1h1v1h2v1h1
-    v1h1v1h1v1
-    h2
-    v1h-2v-1
-    h-2
-    v-1h-1v-1h-1v-1
-    h-2v-1h-1
-    v-2
+             h1v1h1v1h2v1h1
+             v1h1v1h1v1
+             h2
+             v1h-2v-1
+             h-2
+             v-1h-1v-1h-1v-1
+             h-2v-1h-1
+             v-2
     "/>
 
     <!-- crease -->
-    <path fill="rgba(241, 241, 240, 1.00)"
-          stroke="rgba(254, 92, 86, 1.00)"
-          stroke-width=".2"
+    <path class="hat-crease"
           d="M19,14
              h10v1h3v1h1v1
              h-1v-1h-3v-1h-3
@@ -160,44 +169,60 @@
 
 
     <!--    this fills the left brim -->
-<!--    <path fill="rgba(153, 237, 254, 0.99)"-->
-<!--          stroke="rgba(243, 249, 157, 1.00)"-->
-<!--          stroke-width=".3"-->
-<!--          d="M3,19-->
-<!--             v-4h1-->
-<!--             v-2h1-->
-<!--             v-1h1-->
-<!--             v-1h2-->
-<!--             v-1h3-->
-<!--             v1h3-->
-<!--             v2h1-->
-<!--             v1h2-->
-<!--             v1h1-->
-<!--             v1h1-->
-<!--             v1h2-->
-<!--             v1h1-->
-<!--             v1h-2-->
-<!--             v-1h-8-->
-<!--             v1h-1-->
-<!--             v1h-1-->
-<!--             v2h-1-->
-<!--             v1h-4-->
-<!--             v-1h-1-->
-<!--             v-3h-1-->
-<!--            "/>-->
+    <!--    <path fill="rgba(153, 237, 254, 0.99)"-->
+    <!--          stroke="rgba(243, 249, 157, 1.00)"-->
+    <!--          stroke-width=".3"-->
+    <!--          d="M3,19-->
+    <!--             v-4h1-->
+    <!--             v-2h1-->
+    <!--             v-1h1-->
+    <!--             v-1h2-->
+    <!--             v-1h3-->
+    <!--             v1h3-->
+    <!--             v2h1-->
+    <!--             v1h2-->
+    <!--             v1h1-->
+    <!--             v1h1-->
+    <!--             v1h2-->
+    <!--             v1h1-->
+    <!--             v1h-2-->
+    <!--             v-1h-8-->
+    <!--             v1h-1-->
+    <!--             v1h-1-->
+    <!--             v2h-1-->
+    <!--             v1h-4-->
+    <!--             v-1h-1-->
+    <!--             v-3h-1-->
+    <!--            "/>-->
 
-<!--    <path fill="rgba(254, 106, 193, 0.50)"-->
-<!--          stroke="red"-->
-<!--          stroke-width=".5"-->
-<!--          d="-->
-<!--          M2,19-->
-<!--          h3-->
-<!--          "/>-->
+    <!--    <path fill="rgba(254, 106, 193, 0.50)"-->
+    <!--          stroke="red"-->
+    <!--          stroke-width=".5"-->
+    <!--          d="-->
+    <!--          M2,19-->
+    <!--          h3-->
+    <!--          "/>-->
 
-    <polyline fill="blue"
-              points="
-          2,18
-2,15
-"
-    />
+    <!--    this is just the left brim -->
+    <!--    <path fill="rgba(254, 106, 193, 0.9)"-->
+    <!--          stroke="rgba(243, 249, 157, 1.00)"-->
+    <!--          stroke-width=".3"-->
+    <!--          d="M2,19-->
+    <!--             v-4h1-->
+    <!--             v-2h1-->
+    <!--             v-2h2-->
+    <!--             v-1h2-->
+    <!--             v-1h3-->
+    <!--             v1h4-->
+    <!--             v2h1v1h2v1h1v1h1v1h2v1h1-->
+    <!--             v3h-3-->
+    <!--             v-1h-8-->
+    <!--             v2h-1-->
+    <!--             v2h-2-->
+    <!--             v1h-4-->
+    <!--             v-1h-1-->
+    <!--             v-1h-1-->
+    <!--             v-3h-1-->
+    <!--            "/>-->
+
 </svg>
