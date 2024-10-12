@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-     viewBox="0 0 46 46"
+     viewBox="0 0 47 47"
      preserveAspectRatio="xMidYMid slice">
 
     <defs>
@@ -12,7 +12,7 @@
     </defs>
 
     <!--    background-->
-    <rect x="0" y="0" width="46" height="46" fill="rgba(105, 184, 174, 1.00)"/>
+    <rect x="0" y="0" width="47" height="47" fill="rgba(105, 184, 174, 1.00)"/>
 
     <!--    body-->
     <rect x="18" y="15" width="8" height="2" fill="rgba(199, 70, 99, 1.00)"/>
@@ -40,7 +40,29 @@
     <!--    <polyline points="2,18 2,15 3,14" fill="none" stroke="red" stroke-width="1" />-->
     <!--    <path-->
 
-    <path fill="rgba(254, 106, 193, 0.)"
+<!--    this is just the left brim -->
+<!--    <path fill="rgba(254, 106, 193, 0.9)"-->
+<!--          stroke="rgba(243, 249, 157, 1.00)"-->
+<!--          stroke-width=".3"-->
+<!--          d="M2,19-->
+<!--             v-4h1-->
+<!--             v-2h1-->
+<!--             v-2h2-->
+<!--             v-1h2-->
+<!--             v-1h3-->
+<!--             v1h4-->
+<!--             v2h1v1h2v1h1v1h1v1h2v1h1-->
+<!--             v3h-3-->
+<!--             v-1h-8-->
+<!--             v2h-1-->
+<!--             v2h-2-->
+<!--             v1h-4-->
+<!--             v-1h-1-->
+<!--             v-1h-1-->
+<!--             v-3h-1-->
+<!--            "/>-->
+
+    <path fill="rgba(254, 106, 193, 0.9)"
           stroke="rgba(243, 249, 157, 1.00)"
           stroke-width=".3"
           d="M2,19
@@ -50,27 +72,26 @@
              v-1h2
              v-1h3
              v1h4
-             v2h1v1h2v1h1v1h1v1h2v1h1
-             v3h-3
-             v-1h-8
-             v2h-1
-             v2h-2
-             v1h-4
-             v-1h-1
-             v-1h-1
-             v-3h-1
+             v-3h2
+             v-1h13
+             v1h2v1h1v2h1v1
+             v6h1v4h1v-1h2v-1h2v-1h2
+             v1h1v1h1
+             v2h1v3
+             h-1v2h-9
+             v-1h-2v-1
+             h-2v-1h-1v-1
+             h-2v-1h-1v-1
+             h-3v-1
+             h-4v-1
+             h-8
+             v2h-1v2h-2v1
+             h-4
+             v-1h-1v-1h-1v-3h-1
             "/>
-    <!--    m0,-1 H7-->
-    <!--    m0,-1 H10-->
-    <!--    m0,1 h4v2h1v1h3v1h1v1h1v1h1-->
-    <!--    m0,1 h1v3h-2-->
-    <!--    m0,-1 H12,18-->
-    <!--    M11,19 v1h-1v2h-1-->
-    <!--    M8,23 h-4-->
-    <!--    M4,22v-1-->
 
-    <path fill="rgba(153, 237, 254, 0.99)"
-          stroke="rgba(243, 249, 157, 1.00)"
+    <path fill="rgba(153, 237, 254, 0.79)"
+          stroke="rgba(88, 247, 142, 1.00)"
           stroke-width=".3"
           d="M3,19
              v-4h1
@@ -78,22 +99,64 @@
              v-1h1
              v-1h2
              v-1h3
-             v1h3
-             v2h1
-             v1h2
-             v1h1
-             v1h1
-             v1h2
-             v1h1
-             v1h-2
-             v-1h-8
-             v1h-1
-             v1h-1
-             v2h-1
-             v1h-4
-             v-1h-1
-             v-3h-1
+             v1h4
+             v-1h1v-2h1v-1h13
+             v1h2v2h1v7h1v5
+             h2v-1h2v-1h2v-1h2
+             v1h1v5h-1v1
+             h-7
+             v-1h-2
+             v-1h-1v-1h-2
+             v-1h-1v-1h-2
+             v-1h-1v-1h-1v-1h-3
+             v1h-2v-1
+             h-8
+             v1h-1v1h-1v2h-1v1
+             h-4
+             v-1h-1v-3
+             h-1
             "/>
+
+<!--    shadow-->
+    <path fill="rgba(241, 241, 240, 1.00)"
+          stroke="rgba(254, 92, 86, 1.00)"
+          stroke-width=".3"
+          d="M15,10
+             h1v2h3v1h1v1
+             h-2v-1h-2v-1h-1v-2
+
+             M23,17
+             h2v1h4v1h3v1h1v2
+             h-4v-1h-2v-1h-1v-1h-1v-1h-2v-1
+          "
+          />
+
+<!--    this fills the left brim -->
+<!--    <path fill="rgba(153, 237, 254, 0.99)"-->
+<!--          stroke="rgba(243, 249, 157, 1.00)"-->
+<!--          stroke-width=".3"-->
+<!--          d="M3,19-->
+<!--             v-4h1-->
+<!--             v-2h1-->
+<!--             v-1h1-->
+<!--             v-1h2-->
+<!--             v-1h3-->
+<!--             v1h3-->
+<!--             v2h1-->
+<!--             v1h2-->
+<!--             v1h1-->
+<!--             v1h1-->
+<!--             v1h2-->
+<!--             v1h1-->
+<!--             v1h-2-->
+<!--             v-1h-8-->
+<!--             v1h-1-->
+<!--             v1h-1-->
+<!--             v2h-1-->
+<!--             v1h-4-->
+<!--             v-1h-1-->
+<!--             v-3h-1-->
+<!--            "/>-->
 
 <!--    <path fill="rgba(254, 106, 193, 0.50)"-->
 <!--          stroke="red"-->
