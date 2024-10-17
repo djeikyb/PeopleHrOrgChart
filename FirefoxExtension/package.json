@@ -1,0 +1,17 @@
+{
+  "name": "ext",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run": "web-ext build --overwrite-dest",
+    "build": "web-ext build --overwrite-dest",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "private": true,
+  "devDependencies": {
+    "@types/firefox-webext-browser": "^120.0.4"
+  }
+}
